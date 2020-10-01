@@ -121,9 +121,8 @@ public class InfixToPostfix {
 
 
     public static double eval (String infix){
-        convert(infix);
-
-        return evalPostfix(infix);
+String infix2 =  convert(infix);
+        return evalPostfix(infix2);
     }
 
     public static void main (String[] args) {
