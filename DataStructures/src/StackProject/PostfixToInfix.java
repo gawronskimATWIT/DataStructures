@@ -1,17 +1,12 @@
+//Michael Gawronski
 package StackProject;
 import java.util.Scanner;
 public class PostfixToInfix {
 public static void main(String[] Args){
    Scanner input = new Scanner(System.in);
    System.out.println("Please enter a postfix expression");
-    String userInput = input.nextLine();
-
-
-
-
-
-
-
+   String userInput = input.nextLine();
+    System.out.println("Infix: " + convert(userInput));
 }
 
     /**
@@ -21,7 +16,7 @@ public static void main(String[] Args){
      * @param postfix userInput String
      * @return converted String
      */
-    public String convert(String postfix){
+    public static String convert(String postfix){
         ArrayStack<String> Stack = new ArrayStack<>();
     StringBuilder temp = new StringBuilder();
     int postfixLength = postfix.length();
@@ -42,6 +37,8 @@ char secondOp;
             temp.append(charArray[i]);
             temp.append(secondOp);
             Stack.push("(" + temp.toString() + ")");
+            //clears temp stringBuilder
+            temp.delete(0,temp.length());
         }
     }
        if(Stack.getStackLength()==1){
