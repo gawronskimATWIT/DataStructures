@@ -1,3 +1,4 @@
+//Michael Gawronski
 package stackpackage;
 
 import java.util.Scanner;
