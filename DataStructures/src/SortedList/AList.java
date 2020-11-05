@@ -1,14 +1,10 @@
 //Michael Gawronski
-package List;
-
-import SortedList.Iterable;
-import SortedList.Iterator;
+package SortedList;
 
 import java.security.InvalidParameterException;
 import java.util.Arrays;
-import java.util.Spliterator;
 
-public class AList<T> implements ListInterface <T>, Iterable<T> {
+public class AList<T> implements ListInterface<T> {
     private T[] list;
     private int numberOfEntries;
     private int capacity;
@@ -155,40 +151,7 @@ public class AList<T> implements ListInterface <T>, Iterable<T> {
      list = (T[]) newList.toArray();
 
     }
-    public Iterator <T> getIterator () {
-        return iterator();
-    }
 
 
-    public Iterator<T> iterator() {
-        return new IteratorForAList();
-    }
-
-
-    private class IteratorForAList<T> implements Iterator<T>{
-        private int cursor;
-        private boolean nextWasCalled = false;
-
-        public IteratorForAList () {
-            cursor = 0;
-        }
-
-        public boolean hasNext () {
-            return (cursor < numberOfEntries);
-        }
-        public T next() {
-            T result = (T) list[cursor];
-            cursor ++;
-            nextWasCalled = true;
-            return result;
-        }
-        public void remove() {
-            if (!nextWasCalled)
-                throw new IllegalStateException();
-            cursor --;
-            AList.this.remove(cursor);
-            nextWasCalled = false;
-        }
-    }
 
 }
