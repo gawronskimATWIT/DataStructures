@@ -11,8 +11,8 @@ private Point2D end;
 
 
 public Line(double x1, double y1, double x2,double y2){
-start.setLocation(x1,y1);
-end.setLocation(x2,y2);
+start = new Point2D.Double(x1,y1);
+end = new Point2D.Double(x2,y2);
 }
 
 public Line(Point2D start1, Point2D end1){
@@ -45,7 +45,7 @@ public boolean equals(Line testLine){
 
 public String toString(){
     StringBuilder output = new StringBuilder();
-    output.append("("  + getStart().getX() + ", " + getStart().getY()+")"+ "-> ");
+    output.append("("  + getStart().getX() + ", " + getStart().getY()+")"+ " -> ");
     output.append("(" + getEnd().getX()+ ", " + getEnd().getY() + ")");
 return output.toString();
 
