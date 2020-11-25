@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/DataStructures/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/GuessingGame" />
       <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/List" />
+      <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/Tree" />
       <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/bag" />
     </content>
     <orderEntry type="inheritedJdk" />

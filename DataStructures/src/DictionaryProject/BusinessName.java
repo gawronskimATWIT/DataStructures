@@ -23,7 +23,8 @@ private String restaurantName;
     }
 
 
-    public boolean equals(BusinessName name){
+    public boolean equals(Object obj){
+        BusinessName name = (BusinessName) obj;
         if(location.equals(name.getLocation())&& name.getRestaurantName().equals(restaurantName)) {
             return true;
         }
@@ -37,4 +38,9 @@ private String restaurantName;
         int answerLocation = name.getLocation().compareTo(location);
         return answerLocation+answerRestaurantName;
      }
+
+
+    public String toString() {
+        return restaurantName + ", " + location;
+    }
 }

@@ -1,10 +1,14 @@
 package DictionaryProject;
 
 import javax.naming.OperationNotSupportedException;
+import javax.print.DocFlavor;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TelephoneDirectory {
@@ -26,16 +30,23 @@ public class TelephoneDirectory {
                  * Beacuse im bad a regex I had to split strings into 2 arrays because first
                  * regex splits given strings into 2 groups.
                  */
-                Pattern pattern = Pattern.compile("[^,]+");
-                String[] stringArray = line.("");
-                name = stringArray[0];
-                String[] townAndNumber = stringArray[1].split("[^\\s]+");
+                Matcher m = Pattern.compile("[^,]+").matcher(line);
+                List<String> nameList = new ArrayList<String>();
+                while (m.find()){
+                    nameList.add(m.group());
+                }
+                name = nameList.get(0);
+               m = Pattern.compile("[^\\s]+").matcher(nameList.get(1));
+               List<String> townAndNumber = new ArrayList<String>();
+               while(m.find()){
+                   townAndNumber.add(m.group());
+               }
                 /**
                  * townAndNumber[0] = town
                  * townAndNumber[1] = phone Number
                  **/
-                town = townAndNumber[0];
-                number = townAndNumber[1];
+                town = townAndNumber.get(0);
+                number = townAndNumber.get(1);
                 BusinessName bname = new BusinessName(name, town);
                 dictionary.add(bname, number);
             }
@@ -57,15 +68,24 @@ public class TelephoneDirectory {
     }
 
     public String add (String name, String number) {
-        String[] nameArray = name.split("[^,]+");
-        BusinessName bName = new BusinessName(nameArray[0],nameArray[1]);
+        Matcher m = Pattern.compile("[^,]+").matcher(name);
+        List<String> nameList = new ArrayList<String>();
+        while (m.find()){
+            nameList.add(m.group());
+        }
+        BusinessName bName = new BusinessName(nameList.get(0),nameList.get(1));
         return dictionary.add (bName, number);
 
     }
 
     public String remove (String name) {
-        String[] nameArray = name.split("[^,]+");
-        BusinessName bName = new BusinessName(nameArray[0],nameArray[1]);
+        Matcher m = Pattern.compile("[^, ]+").matcher(name);
+        List<String> nameList = new ArrayList<String>();
+        while (m.find()){
+            nameList.add(m.group());
+        }
+
+        BusinessName bName = new BusinessName(nameList.get(0),nameList.get(1));
        return dictionary.remove(bName);
     }
 
