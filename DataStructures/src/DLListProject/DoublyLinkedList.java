@@ -3,6 +3,7 @@ package DLListProject;
 
 
 
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class DoublyLinkedList<T> implements ListInterface<T>, Iterable<T> {
@@ -161,10 +162,10 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Iterable<T> {
     }
 
     public Iterator<T> iterator() {
-        return new DListIterator();
+        return (Iterator<T>) getIterator();
     }
-    public Iterator<T> getIterator(){
-        return iterator();
+    public ListIterator<T> getIterator(){
+        return new DListIterator();
     }
 
     private void addNodeAfter (DNode <T> curr, DNode <T> after) {
@@ -218,7 +219,7 @@ public class DoublyLinkedList<T> implements ListInterface<T>, Iterable<T> {
 
 
     private enum Move{NEXT,PREV}
-    private class DListIterator implements Iterator <T> {
+    private class DListIterator implements ListIterator<T> {
         private DNode<T> currNode;
         private int currIndex;
         private boolean isRemoveOrSetLegal = false;
