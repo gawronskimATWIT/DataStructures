@@ -1,6 +1,6 @@
 package DictionaryProject;
 
-public class BusinessName {
+public class BusinessName implements Comparable<BusinessName> {
 private String location;
 private String restaurantName;
     public BusinessName(String name, String town){
@@ -34,9 +34,10 @@ private String restaurantName;
     }
 
      public int compareTo(BusinessName name){
-        int answerRestaurantName = name.getRestaurantName().compareTo(restaurantName);
-        int answerLocation = name.getLocation().compareTo(location);
-        return answerLocation+answerRestaurantName;
+        String input = name.toString();
+        String other = this.toString();
+        int result = other.compareTo(input);
+        return result;
      }
 
 

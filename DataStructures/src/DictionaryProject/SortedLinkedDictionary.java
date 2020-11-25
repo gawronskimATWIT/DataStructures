@@ -101,19 +101,19 @@ public class SortedLinkedDictionary <K extends Comparable <? super K> , V>
     public V remove (K aKey) {
     V value = null;
         for(DictNode curr = head; curr!=null; curr= curr.getNext()){
-        if(aKey.compareTo(curr.getKey())> 0){
+        if(aKey.compareTo(curr.getKey())== 0){
             value = curr.getValue();
             DictNode prev = curr.getPrev();
             DictNode next = curr.getNext();
             next.setPrev(prev);
-            prev.setNext(next);
+             prev.setNext(next);
             curr=null;
             numberOfEntries--;
-
+            return value;
         }
 
     }
-        return value;
+        return null;
     }
 
     public Iterator <K> getKeyIterator () {

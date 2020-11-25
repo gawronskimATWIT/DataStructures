@@ -15,8 +15,8 @@ public class TelephoneDirectory {
     private DictionaryInterface <BusinessName, String> dictionary;
 
     public TelephoneDirectory (String filename) {
-        dictionary = new ArrayDictionary();
-
+        dictionary = new SortedLinkedDictionary();
+        //dictionary = new ArrayDictionary();
         try {
             String line;
             String name = "";
@@ -79,13 +79,16 @@ public class TelephoneDirectory {
     }
 
     public String remove (String name) {
-        Matcher m = Pattern.compile("[^, ]+").matcher(name);
-        List<String> nameList = new ArrayList<String>();
+        Matcher m = Pattern.compile("[^,]+").matcher(name);
+        String[] nameList = new String[256];
+        int index=0;
         while (m.find()){
-            nameList.add(m.group());
+           nameList[index]= m.group();
+            index++;
         }
-
-        BusinessName bName = new BusinessName(nameList.get(0),nameList.get(1));
+        //gets rid of white space that would mess up .equals()
+        nameList[1]= nameList[1].replaceAll(" ","");
+        BusinessName bName = new BusinessName(nameList[0],nameList[1]);
        return dictionary.remove(bName);
     }
 
@@ -101,7 +104,7 @@ public class TelephoneDirectory {
 
 
     public static void main ( String[] args) {
-        TelephoneDirectory td = new TelephoneDirectory("DataStructures/src/DictionaryProject/resturants.txt");
+        TelephoneDirectory td = new TelephoneDirectory("src/DictionaryProject/restaurants.txt");
         if (td.isEmpty())
             System.exit(0);
         td.add ("Chateau Restaurant, Waltham", "781-894-3339");

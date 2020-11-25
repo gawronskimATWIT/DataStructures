@@ -4,6 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/DataStructures/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/Dictionary" />
       <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/GuessingGame" />
       <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/List" />
       <excludeFolder url="file://$MODULE_DIR$/DataStructures/src/Tree" />
